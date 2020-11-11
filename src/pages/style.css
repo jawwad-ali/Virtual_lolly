@@ -1,0 +1,36 @@
+.data-container {
+    background-color: #21212b;
+    height: 101.8vh;
+}
+
+.lollyContainer {
+    display: flex;
+    /* background: #000; */
+    position: relative;
+    text-align: center;
+    top: 120px;
+    justify-content: center;
+    align-items: center;
+}
+
+.colorInputs {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 70px;
+}
+
+.colorInputs input {
+    border-radius: 50%;
+    width: 70px;
+    height: 40px;
+    background: none;
+    box-shadow: none;
+    border: none;
+}
+
+.form-container {
+    position: relative;
+    top: 120px;
+    width: 90%;
+}
