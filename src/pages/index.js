@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react"
 import { Link } from "gatsby"
 import Heading from "../components/Heading"
-import Button from "../components/Button"
+import Button from "../components/Button" 
 import Lolly from "../components/lolly"
 import "./style.css"
 

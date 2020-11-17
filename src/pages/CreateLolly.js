@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import Grid from '@material-ui/core/Grid';
 import "./CreateLolly.css"
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Result from "../components/Result"
 
 const getData = gql`{
    getVCard{
@@ -18,11 +19,17 @@ const addVCard_MUTATION = gql`
       $c2:String!
       $c3:String!,
       $sender:String!,
-      $rec:String!
-      $msg:String!){
-          addVCard(c1:$c1 ,c2:$c2,c3:$c3,sender:$sender,rec:$rec ,  msg:$msg){
-            id
-          }
+      $rec:String!,
+      $msg:String!,
+      )
+        {
+        addVCard(c1:$c1 , c2:$c2, c3:$c3, sender:$sender, rec:$rec ,  msg:$msg  ){
+          id
+          sender
+          rec
+          link
+          msg
+        }
   }
 `
 
@@ -35,7 +42,7 @@ export default function CreateLolly() {
       senderField: "",
     },
     onSubmit: (values) => {
-      console.log(values)
+      // console.log(values)
     },
     validate: (values) => {
       let error = {}
@@ -56,10 +63,6 @@ export default function CreateLolly() {
   const [c3, setC3] = useState("#deaa43")
 
   const handleSend = () => {
-    console.log(senderField.current.value)
-    console.log(recField.current.value)
-    console.log(msgField.current.value)
-
     if (!senderField.current.value, !recField.current.value, !msgField.current.value) {
       return false
     }
@@ -72,6 +75,7 @@ export default function CreateLolly() {
         msg: msgField.current.value
       }
     })
+    // console.log(sender , rec , msg)
     senderField.current.value = ""
     recField.current.value = ""
     msgField.current.value = ""
@@ -86,69 +90,51 @@ export default function CreateLolly() {
   return (
     <div className="data-container">
       <Grid container spacing={3}>
+
         <Grid item lg={6} xs={12}>
           <div className="lollyContainer">
             <Lolly top={c1} middle={c2} bottom={c3} />
             <div className="colorInputs">
-              <input type="color" value={c1} onChange={(e) => { setC1(e.target.value) }} />
-              <input type="color" value={c2} onChange={(e) => { setC2(e.target.value) }} />
-              <input type="color" value={c3} onChange={(e) => { setC3(e.target.value) }} />
+              <label htmlFor="topFlavor" className="colorPickerLabel">
+                <input type="color" className="colorPicker" value={c1} onChange={(e) => { setC1(e.target.value) }} />
+              </label>
+              <label htmlFor="topFlavor" className="colorPickerLabel">
+                <input type="color" className="colorPicker" value={c2} onChange={(e) => { setC2(e.target.value) }} />
+              </label>
+              <label htmlFor="topFlavor" className="colorPickerLabel">
+                <input type="color" className="colorPicker" value={c3} onChange={(e) => { setC3(e.target.value) }} />
+              </label>
             </div>
           </div>
         </Grid>
 
-        {/* <Grid item lg={6} xs={12}>
+        <Grid item lg={6} xs={12}>
           <div className="form-container">
 
             <form onSubmit={formik.handleSubmit}>
               <label>To:</label>
-              <input className="form-control" type="text" id="recField" placeholder="recever" onChange={formik.handleChange} ref={recField}
+              <input autoComplete="off" className="form-control text-field" type="text" id="recField" onChange={formik.handleChange} ref={recField}
               />
-              {formik.errors.recField ? <div>{formik.errors.recField}</div> : null}
-              <br />
-              <br />
+              {formik.errors.recField ? <div className="error">{formik.errors.recField}</div> : null}
 
-              <textarea className="form-control" id="msgField" placeholder="Write what you think" onChange={formik.handleChange} ref={msgField}></textarea>
-              {formik.errors.msgField ? <div>{formik.errors.msgField}</div> : null}
-              <br />
               <br />
 
-              <input className="form-control" id="senderField" type="text" placeholder="FROM" onChange={formik.handleChange} ref={senderField} /> <br /><br />
-              {formik.errors.senderField ? <div>{formik.errors.senderField}</div> : null}
+              <label>Say Something nice:</label>
+              <textarea autoComplete="off" className="form-control text-field" id="msgField" onChange={formik.handleChange} ref={msgField}></textarea>
+              {formik.errors.msgField ? <div className="error">{formik.errors.msgField}</div> : null}
 
-              <button className="btn btn-success" onClick={handleSend} id="login">Freez Lolly</button>
+              <br />
 
+              <label>From:</label>
+              <input autoComplete="off" className="form-control text-field" id="senderField" type="text" onChange={formik.handleChange} ref={senderField} /> <br /><br />
+              {formik.errors.senderField ? <div className="error" >{formik.errors.senderField}</div> : null}
+
+              <input type="submit" className="btn btn-dark" onClick={handleSend} id="login" value="Freez" />
             </form>
           </div>
-        </Grid> */}
+        </Grid>
       </Grid>
 
-      {/* <div>
-
-        <form onSubmit={formik.handleSubmit}>
-          <label>To:</label>
-          <input type="text" id="recField" placeholder="recever" onChange={formik.handleChange} ref={recField}
-          />
-          {formik.errors.recField ? <div>{formik.errors.recField}</div> : null}
-          <br />
-          <br />
-
-          <textarea  id="msgField" placeholder="Write what you think" onChange={formik.handleChange} ref={msgField}></textarea>
-          {formik.errors.msgField ? <div>{formik.errors.msgField}</div> : null}
-          <br />
-          <br />
-
-          <input id="senderField" type="text" placeholder="FROM" onChange={formik.handleChange} ref={senderField} /> <br /><br />
-          {formik.errors.senderField ? <div>{formik.errors.senderField}</div> : null}
-
-          <button onClick={handleSend} id="login">Login</button>
-
-        </form>
-      </div> */}
-    </div>
-
-
-
-
+    </div >
   )
 }

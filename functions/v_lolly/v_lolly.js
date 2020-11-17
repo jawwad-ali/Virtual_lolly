@@ -20,10 +20,10 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addVCard(c1:String! , 
+    addVCard(c1:String!  
       c2:String!
-      c3:String!,
-      sender:String!,
+      c3:String!
+      sender:String!
       rec:String!
       msg:String!
     ) : VCard
@@ -44,20 +44,29 @@ const resolvers = {
       console.log(c1, c2, c3, rec, msg, sender)
       console.log("===========")
 
-
       try {
         var client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET });
+        const link = shortid.generate()
+
         var result = await client.query(
           q.Create(
             q.Collection('v_lolly'),
             {
               data: {
                 c1, c2, c3, rec, msg, sender,
-                link: shortid.generate()
+                link,
+                // link: shortid.generate(),
+                // data.url = link
+                headers: {
+                  Location: `/lolly/${link}`,
+                }
               }
             },
           )
         );
+
+        result.url = link
+        console.log(`/lolly/${result.url}`)
         return result.ref.data
 
       }
