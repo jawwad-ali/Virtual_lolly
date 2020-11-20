@@ -1,7 +1,8 @@
 .data-container {
     background-color: #21212b;
-    height: 100vh;
-    overflow-x: hidden;
+    height: auto;
+    overflow: hidden;
+    padding-bottom: 50px;
 }
 
 .lollyContainer {

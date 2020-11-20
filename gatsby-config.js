@@ -18,6 +18,14 @@ module.exports = {
         ],
         display: 'swap'
       }
-    }
+    },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "VCard",
+        fieldName: "lolly",
+        url: "http://localhost:8888/.netlify/functions/v_lolly",
+      },
+    },
   ],
 }

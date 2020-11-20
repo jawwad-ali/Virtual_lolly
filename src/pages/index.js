@@ -8,7 +8,7 @@ import "./style.css"
 export default function Home() {
   return (
     <div className="homapage-container">
-      <div>
+      <div> 
         <Heading value2={"because we all know someone who deserves some sugar. "}
           value={"virtual lollipop"}
           className={"heading"}
