@@ -4,7 +4,7 @@ const faunadb = require('faunadb'),
 require('dotenv').config();
 const shortid = require("shortid")
 const axios = require("axios")
- 
+
 const typeDefs = gql`
   type Query {
     getVCard: [VCard!]
@@ -37,7 +37,6 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     getVCard: async (parent, root, args) => {
-      // return "hello"
       try {
         var adminClient = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET });
         const result = await adminClient.query(
@@ -86,16 +85,10 @@ const resolvers = {
 
       try {
         var client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET });
-        // const link = shortid.generate()
-
-        // const id = shortid.generate()
-        // args.url = id
-
         var result = await client.query(
           q.Create(
             q.Collection('v_lolly'),
             {
-              // data: args
               data: {
                 c1, c2, c3, rec, msg, sender, url
               }
