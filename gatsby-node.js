@@ -42,8 +42,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const { data } = await graphql(`
-      query {
-        VCard {
+       {
+        get_v_Card {
             getVCard { 
               c1
                c2
@@ -57,19 +57,19 @@ exports.createPages = async ({ graphql, actions }) => {
         }
   `)
 
-  data.VCard.getVCard.forEach(node => {
+  data.get_v_Card.getVCard.forEach(node => {
     createPage({
-      path: `lolly/${node.link}`,
+      path: `lolly/${node.url}`,
       component: path.resolve("./src/templates/template.tsx"),
       context: {
-        id: edge.url,
-        c1: edge.c1,
-        c2: edge.c2,
-        c3: edge.c3,
-        url: edge.url,
-        msg: edge.msg,
-        sender: edge.sender,
-        rec: edge.rec
+        id: node.url,
+        c1: node.c1,
+        c2: node.c2,
+        c3: node.c3,
+        url: node.url,
+        msg: node.msg,
+        sender: node.sender,
+        rec: node.rec
       },
     })
   })
