@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
-import { Link } from "gatsby"
+// import React, { useState, useEffect } from 'react'
+// import { useQuery } from '@apollo/client';
+// import gql from 'graphql-tag';
+// import { Link } from "gatsby"
 
-const getData = gql`{
-    getVCard{
-     id
-     sender
-        rec
-        msg
-        url
-   }
- }`
+// const getData = gql`{
+//     getVCard{
+//      id
+//      sender
+//         rec
+//         msg
+//         url
+//    }
+//  }`
 
-function Result() {
-    const [data, loading, error] = useQuery(getData)
-    console.log(data)
-    // let [lollydata, setLollydata] = useState()
+// function Result() {
+//     const [data, loading, error] = useQuery(getData)
+//     console.log(data)
 
-    // console.log(data.pageContext.sender)
 
-    return (
-        <div>
-            <h5>YAHA NAHI </h5>
-            <Link to="/CreateLolly">
-                CreateLolly
-            </Link>
-        </div>
-    )
-}
+//     return (
+//         <div>
+//             <h5>YAHA NAHI </h5>
+//             <Link to="/CreateLolly">
+//                 CreateLolly
+//             </Link>
+//         </div>
+//     )
+// }
 
-export default Result
+// export default Result
