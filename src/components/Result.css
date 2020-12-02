@@ -14,10 +14,14 @@
     text-align: left;
     position: relative;
 }
+.dynamic-lolly-path{
+    margin-top: 18px;
+    font-family: 'Yellowtail', cursive;
 
+}
 .lolly-details {
     position: absolute;
-    top: 50px;
+    top: 68px;
     left: 10px;
     padding: 1em 2em;
     margin-bottom: 3.5em;

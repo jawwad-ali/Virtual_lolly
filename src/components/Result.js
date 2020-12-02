@@ -12,6 +12,7 @@ function Result({ c1, c2, c3, rec, msg, sender, url }) {
                     <Lolly top={c1} middle={c2} bottom={c3} />
                 </div>
                 <div className="col-lg-6 created-lolly-details-div">
+                    <h4 className="dynamic-lolly-path">{`https://peaceful-sinoussi-140afb.netlify.app/lolly/${url}`}</h4>
                     <div className="lolly-details">
                         <span><h2>{rec}</h2></span>
 

@@ -12,13 +12,13 @@ module.exports = {
         display: 'swap'
       }
     },
-    // {
-    //   resolve: "gatsby-source-graphql",
-    //   options: {
-    //     typeName: "VCard",
-    //     fieldName: "lolly",
-    //     url: "http://localhost:8888/.netlify/functions/v_lolly",
-    //   },
-    // },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        typeName: "GEN_LINK",
+        fieldName: "get_v_Card",
+        url: "https://peaceful-sinoussi-140afb.netlify.app/.netlify/functions/v_lolly",
+      },
+    },
   ],
 }
