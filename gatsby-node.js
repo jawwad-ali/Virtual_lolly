@@ -43,7 +43,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const { data } = await graphql(`
       query {
-          lolly {
+        VCard {
             getVCard { 
               c1
                c2
@@ -57,7 +57,7 @@ exports.createPages = async ({ graphql, actions }) => {
         }
   `)
 
-  data.lolly.getVCard.forEach(node => {
+  data.VCard.getVCard.forEach(node => {
     createPage({
       path: `lolly/${node.link}`,
       component: path.resolve("./src/templates/template.tsx"),
