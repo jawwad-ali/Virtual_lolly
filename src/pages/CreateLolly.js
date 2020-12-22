@@ -12,12 +12,6 @@ import { Link } from "gatsby"
 
 const shortid = require("shortid")
 
-// const getData = gql`{
-//    getVCard{
-//     id
-//   }
-// }`
-
 const addVCard_MUTATION = gql`
   mutation addVCard(
     $c1:String!  
@@ -88,20 +82,6 @@ export default function CreateLolly() {
 
     const id = shortid.generate()
 
-    // addVCard({
-    //   variables: {
-    //     c1, c2, c3,
-    //     sender: senderField.current.value,
-    //     rec: recField.current.value,
-    //     msg: msgField.current.value,
-    //     url: id,
-    //   },
-
-    // })
-    // setPath(id)
-
-
-
     const result = await addVCard({
       variables: {
         c1, c2, c3,
@@ -113,13 +93,6 @@ export default function CreateLolly() {
     })
 
     setPath(id)
-
-    // senderField.current.value = ""
-    // recField.current.value = ""
-    // msgField.current.value = ""
-
-
-    // navigate(`../components/Result`)
   }
 
   const senderField = useRef()
@@ -127,16 +100,7 @@ export default function CreateLolly() {
   const msgField = useRef()
 
   const [addVCard] = useMutation(addVCard_MUTATION)
-  // useEffect(() => {
-  //   async function runHook() {
-  //     const response = await fetch("https://api.netlify.com/build_hooks/5fb41c3cbf9b3100bb60bee4", {
-  //       method: "POST",
-  //     });
 
-  //   }
-  //   runHook();
-
-  // }, [data])
   return (
     <div>
       <div style={{ textAlign: "center" }}>
@@ -206,118 +170,8 @@ export default function CreateLolly() {
                 />
               )
           }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-          {/* {!data ? <> <Grid item lg={6} xs={12}>
-            <div className="lollyContainer">
-              <Lolly top={c1} middle={c2} bottom={c3} />
-              <div className="colorInputs">
-                <label className="colorPickerLabel">
-                  <input type="color" className="colorPicker" value={c1} onChange={(e) => { setC1(e.target.value) }} />
-                </label>
-                <label className="colorPickerLabel">
-                  <input type="color" className="colorPicker" value={c2} onChange={(e) => { setC2(e.target.value) }} />
-                </label>
-                <label className="colorPickerLabel">
-                  <input type="color" className="colorPicker" value={c3} onChange={(e) => { setC3(e.target.value) }} />
-                </label>
-              </div>
-            </div>
-          </Grid>
-
-            <Grid item lg={6} xs={12}>
-              <div className="form-container">
-
-                <form onSubmit={formik.handleSubmit}>
-                  <label htmlFor="to">To:</label>
-                  <input autoComplete="off" className="form-control text-field" type="text" id="recField" onChange={formik.handleChange} ref={recField}
-                  />
-                  {formik.errors.recField ? <div className="error">{formik.errors.recField}</div> : null}
-
-                  <br />
-
-                  <label htmlFor="Say Something nice">Say Something nice:</label>
-                  <textarea autoComplete="off" className="form-control text-field" id="msgField" onChange={formik.handleChange} ref={msgField}></textarea>
-                  {formik.errors.msgField ? <div className="error">{formik.errors.msgField}</div> : null}
-
-                  <br />
-
-                  <label htmlFor="From">From:</label>
-                  <input autoComplete="off" className="form-control text-field" id="senderField" type="text" onChange={formik.handleChange} ref={senderField} /> <br /><br />
-                  {formik.errors.senderField ? <div className="error" >{formik.errors.senderField}</div> : null}
-
-                  <input type="submit" className="btn btn-dark" onClick={handleSend} id="login" value="Freez" />
-
-                </form>
-              </div>
-            </Grid> </> : <Result rec={data?.addVCard?.rec} sender={data?.addVCard?.sender} msg={data?.addVCard?.msg} />
-          } */}
-
-
-
-
-
-
-          {/* <Grid item lg={6} xs={12}>
-            <div className="lollyContainer">
-              <Lolly top={c1} middle={c2} bottom={c3} />
-              <div className="colorInputs">
-                <label className="colorPickerLabel">
-                  <input type="color" className="colorPicker" value={c1} onChange={(e) => { setC1(e.target.value) }} />
-                </label>
-                <label className="colorPickerLabel">
-                  <input type="color" className="colorPicker" value={c2} onChange={(e) => { setC2(e.target.value) }} />
-                </label>
-                <label className="colorPickerLabel">
-                  <input type="color" className="colorPicker" value={c3} onChange={(e) => { setC3(e.target.value) }} />
-                </label>
-              </div>
-            </div>
-          </Grid>
-
-          <Grid item lg={6} xs={12}>
-            <div className="form-container">
-
-              <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="to">To:</label>
-                <input autoComplete="off" className="form-control text-field" type="text" id="recField" onChange={formik.handleChange} ref={recField}
-                />
-                {formik.errors.recField ? <div className="error">{formik.errors.recField}</div> : null}
-
-                <br />
-
-                <label htmlFor="Say Something nice">Say Something nice:</label>
-                <textarea autoComplete="off" className="form-control text-field" id="msgField" onChange={formik.handleChange} ref={msgField}></textarea>
-                {formik.errors.msgField ? <div className="error">{formik.errors.msgField}</div> : null}
-
-                <br />
-
-                <label htmlFor="From">From:</label>
-                <input autoComplete="off" className="form-control text-field" id="senderField" type="text" onChange={formik.handleChange} ref={senderField} /> <br /><br />
-                {formik.errors.senderField ? <div className="error" >{formik.errors.senderField}</div> : null}
-
-                <input type="submit" className="btn btn-dark" onClick={handleSend} id="login" value="Freez" />
-
-              </form>
-            </div>
-          </Grid> */}
         </Grid>
       </div>
-
     </div>
   )
 }
